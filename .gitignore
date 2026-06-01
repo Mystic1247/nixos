@@ -1,0 +1,9 @@
+# Home Manager backup files
+*.backup
+
+# direnv
+.direnv/
+
+# Result symlinks from nix build
+result
+result-*
