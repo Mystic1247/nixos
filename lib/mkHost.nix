@@ -33,49 +33,46 @@
 }:
 
 nixpkgs.lib.nixosSystem {
-  # inherit system;
+  inherit system;
   specialArgs = { inherit inputs; };
 
-  modules = [
-    { nixpkgs.hostPlatform = system; }
-  ]
+  modules =
+    # Core system modules
+    [ ../modules/core ]
 
-  # Core system modules
-  ++ [ ../modules/core ]
+    # Host-specific hardware + config
+    ++ [ ../hosts/${hostname} ]
 
-  # Host-specific hardware + config
-  ++ [ ../hosts/${hostname} ]
+    # Role profiles (laptop / desktop / server / …)
+    ++ map (p: ../profiles/${p}) profiles
 
-  # Role profiles (laptop / desktop / server / …)
-  ++ map (p: ../profiles/${p}) profiles
+    # NixOwOs module :3
+    ++ [ inputs.nixowos.nixosModules.default ]
 
-  # NixOwOs module :3
-  ++ [ inputs.nixowos.nixosModules.default ]
+    # Home Manager module
+    ++ [ home-manager.nixosModules.home-manager ]
 
-  # Home Manager module
-  ++ [ home-manager.nixosModules.home-manager ]
+    # Wire in each user's Home Manager config
+    ++ [
+      {
+        home-manager = {
+          useGlobalPkgs = true;
+          useUserPackages = true;
+          extraSpecialArgs = { inherit inputs; };
+          backupFileExtension = "backup";
+          users = builtins.listToAttrs (
+            map (u: {
+              name = u;
+              value = import ../users/${u}/home.nix;
+            }) users
+          );
+        };
+      }
+    ]
 
-  # Wire in each user's Home Manager config
-  ++ [
-    {
-      home-manager = {
-        useGlobalPkgs = true;
-        useUserPackages = true;
-        extraSpecialArgs = { inherit inputs; };
-        backupFileExtension = "backup";
-        users = builtins.listToAttrs (
-          map (u: {
-            name = u;
-            value = import ../users/${u}/home.nix;
-          }) users
-        );
-      };
-    }
-  ]
+    # 6. Declare the user accounts themselves
+    ++ map (u: ../users/${u}/system.nix) users
 
-  # 6. Declare the user accounts themselves
-  ++ map (u: ../users/${u}/system.nix) users
-
-  # 7. Any one-off extras passed at the call site
-  ++ extraModules;
+    # 7. Any one-off extras passed at the call site
+    ++ extraModules;
 }

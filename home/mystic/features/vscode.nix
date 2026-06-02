@@ -30,7 +30,7 @@
         "nix.serverPath" = "nil";
 
         "editor.formatOnSave" = true;
-        "nix.formatterPath" = "nixfmt-rfc-style";
+        "nix.formatterPath" = "nixfmt";
       };
 
       keybindings = [

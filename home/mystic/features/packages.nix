@@ -7,9 +7,9 @@
     helix
     micro
 
-    gnupg
-    nixfmt
-    nil
+    # gnupg
+    # nixfmt
+    # nil
 
     fastfetch
     hyfetch
@@ -23,7 +23,7 @@
     # dorion
     rmpc
     firefox
-    inputs.helium.packages.${system}.default
+    inputs.helium.packages.${pkgs.system}.default
     obsidian
     parabolic
     foliate

@@ -15,7 +15,8 @@
 
     nil
     # alejandra
-    nixfmt-rfc-style
+    nixfmt
+    gnupg
 
     maple-mono.NF
     pantum-driver
