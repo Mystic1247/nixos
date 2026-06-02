@@ -14,7 +14,7 @@
     zip
 
     nil
-    alejandra
+    # alejandra
     nixfmt-rfc-style
 
     maple-mono.NF
