@@ -13,6 +13,7 @@
     unzip
     zip
 
+    maple-mono
     pantum-driver
   ];
 }
