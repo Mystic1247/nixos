@@ -8,7 +8,7 @@
     micro
 
     gnupg
-    nixfmt-rfc-style
+    nixfmt
     nil
 
     fastfetch

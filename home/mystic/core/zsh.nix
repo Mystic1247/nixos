@@ -41,7 +41,7 @@
       gl = "git lg";
     };
 
-    initExtra = ''
+    initContent = ''
       ZSH_HIGHLIGHT_STYLES[command]='fg=green'
       ZSH_HIGHLIGHT_STYLES[alias]='fg=green'
       ZSH_HIGHLIGHT_STYLES[builtin]='fg=green'

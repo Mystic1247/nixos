@@ -11,25 +11,19 @@
       };
 
       init.defaultBranch = "main";
-
-      #
       pull.rebase = true;
       push.autoSetupRemote = true;
       rerere.enabled = true;
       column.ui = "auto";
       branch.sort = "-committerdate";
-    };
 
-    #
-    extraConfig = {
       diff.algorithm = "histogram";
       merge.conflictstyle = "zdiff3";
-    };
 
-    # Aliases
-    aliases = {
-      lg = "log --oneline --graph --decorate --all";
-      st = "status -sb";
+      alias = {
+        lg = "log --oneline --graph --decorate --all";
+        st = "status -sb";
+      };
     };
   };
 }
