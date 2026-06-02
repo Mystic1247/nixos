@@ -12,7 +12,9 @@
     btop
     unzip
     zip
+
     nil
+    alejandra
 
     maple-mono.NF
     pantum-driver
