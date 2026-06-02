@@ -41,14 +41,12 @@
       nixosConfigurations = {
         spectre = mkHost {
           hostname = "spectre";
-          system = "x86_64-linux";
           profiles = [ "laptop" ];
           users = [ "mystic" ];
         };
 
         chromebook = mkHost {
           hostname = "chromebook";
-          system = "x86_64-linux";
           profiles = [ "laptop" ];
           users = [ "mystic" ];
         };
