@@ -25,35 +25,42 @@
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, ... } @ inputs:
+  outputs =
+    {
+      self,
+      nixpkgs,
+      home-manager,
+      ...
+    }@inputs:
     let
       myLib = import ./lib { inherit nixpkgs home-manager inputs; };
       inherit (myLib) mkHost;
-    in {
+    in
+    {
 
       nixosConfigurations = {
         spectre = mkHost {
           hostname = "spectre";
-          system   = "x86_64-linux";
+          system = "x86_64-linux";
           profiles = [ "laptop" ];
-          users    = [ "mystic" ];
+          users = [ "mystic" ];
         };
 
         chromebook = mkHost {
           hostname = "chromebook";
-          system   = "x86_64-linux";
+          system = "x86_64-linux";
           profiles = [ "laptop" ];
-          users    = [ "mystic" ];
+          users = [ "mystic" ];
         };
       };
 
       templates = {
         godot = {
-          path        = ./templates/godot;
+          path = ./templates/godot;
           description = "Godot 4 game dev shell — editor, export templates, gdtoolkit, butler";
         };
         gtk = {
-          path        = ./templates/gtk;
+          path = ./templates/gtk;
           description = "GTK4 app dev shell — Vala/Python/Rust variants with libadwaita";
         };
       };

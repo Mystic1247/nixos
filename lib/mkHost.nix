@@ -17,14 +17,19 @@
 #   users     - list of users from users/ whose HM configs to wire in
 #   extraModules - optional list of extra NixOS modules to include
 
-{ nixpkgs, home-manager, inputs, ... }:
+{
+  nixpkgs,
+  home-manager,
+  inputs,
+  ...
+}:
 
 {
   hostname,
-  system   ? "x86_64-linux",
-  profiles ? [],
-  users    ? [],
-  extraModules ? [],
+  system ? "x86_64-linux",
+  profiles ? [ ],
+  users ? [ ],
+  extraModules ? [ ],
 }:
 
 nixpkgs.lib.nixosSystem {
@@ -51,14 +56,16 @@ nixpkgs.lib.nixosSystem {
     ++ [
       {
         home-manager = {
-          useGlobalPkgs    = true;
-          useUserPackages  = true;
+          useGlobalPkgs = true;
+          useUserPackages = true;
           extraSpecialArgs = { inherit inputs; };
           backupFileExtension = "backup";
-          users = builtins.listToAttrs (map (u: {
-            name  = u;
-            value = import ../users/${u}/home.nix;
-          }) users);
+          users = builtins.listToAttrs (
+            map (u: {
+              name = u;
+              value = import ../users/${u}/home.nix;
+            }) users
+          );
         };
       }
     ]

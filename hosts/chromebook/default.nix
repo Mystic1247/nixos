@@ -13,14 +13,14 @@
   imports = [ ./hardware-configuration.nix ];
 
   networking.hostName = "nasher";
-  time.timeZone       = "Asia/Singapore";
+  time.timeZone = "Asia/Singapore";
 
   services.logind.settings = {
     Login = {
-      HandleLidSwitch             = "suspend";
+      HandleLidSwitch = "suspend";
       HandleLidSwitchExternalPower = "suspend";
-      HandleLidSwitchDocked       = "suspend";
-      HandlePowerKey              = "suspend";
+      HandleLidSwitchDocked = "suspend";
+      HandlePowerKey = "suspend";
     };
   };
 

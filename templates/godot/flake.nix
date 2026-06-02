@@ -15,37 +15,43 @@
   description = "Godot 4 game dev shell";
 
   inputs = {
-    nixpkgs.url     = "github:nixos/nixpkgs?ref=nixos-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
     flake-utils.url = "github:numtide/flake-utils";
   };
 
-  outputs = { nixpkgs, flake-utils, ... }:
-    flake-utils.lib.eachDefaultSystem (system:
+  outputs =
+    { nixpkgs, flake-utils, ... }:
+    flake-utils.lib.eachDefaultSystem (
+      system:
       let
-        pkgs = import nixpkgs { inherit system; config.allowUnfree = true; };
-      in {
+        pkgs = import nixpkgs {
+          inherit system;
+          config.allowUnfree = true;
+        };
+      in
+      {
         devShells.default = pkgs.mkShell {
           name = "godot-dev";
 
           packages = with pkgs; [
             # Core
-            godot_4                  # The editor + runtime
+            godot_4 # The editor + runtime
             godot_4-export-templates # Pre-built export templates
 
             # GDScript tooling
-            gdtoolkit_4              # gdformat (formatter) + gdlint (linter)
+            gdtoolkit_4 # gdformat (formatter) + gdlint (linter)
 
             # Asset pipeline
-            imagemagick              # Convert/resize textures, generate icons
-            ffmpeg                   # Audio/video processing
-            optipng                  # Compress PNG assets
-            
+            imagemagick # Convert/resize textures, generate icons
+            ffmpeg # Audio/video processing
+            optipng # Compress PNG assets
+
             # Publishing
-            butler                   # itch.io uploader
+            butler # itch.io uploader
 
             # Useful extras
             git
-            just                     # Command runner (like make, but nicer)
+            just # Command runner (like make, but nicer)
           ];
 
           # Environment variables available inside the shell
@@ -54,5 +60,6 @@
             echo "   gdformat, gdlint, butler, imagemagick all available."
           '';
         };
-      });
+      }
+    );
 }

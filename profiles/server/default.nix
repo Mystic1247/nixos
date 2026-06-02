@@ -1,7 +1,6 @@
 # profiles/server/default.nix
 #
 
-
 { pkgs, ... }:
 
 {
@@ -16,21 +15,24 @@
     enable = true;
     settings = {
       PasswordAuthentication = false;
-      PermitRootLogin        = "no";
+      PermitRootLogin = "no";
       KbdInteractiveAuthentication = false;
     };
   };
 
   networking.firewall = {
-    enable    = true;
+    enable = true;
     allowedTCPPorts = [ 22 ];
   };
 
   system.autoUpgrade = {
-    enable      = true;
-    flake        = "github:Mystic1247/nixos-config";
-    flags        = [ "--update-input" "nixpkgs" ];
-    dates        = "04:00";
+    enable = true;
+    flake = "github:Mystic1247/nixos-config";
+    flags = [
+      "--update-input"
+      "nixpkgs"
+    ];
+    dates = "04:00";
     randomizedDelaySec = "30min";
   };
 }

@@ -16,7 +16,7 @@
     # Common libraries that pre-compiled binaries tend to need.
     # Add more here if a specific tool complains about missing .so files.
     libraries = with pkgs; [
-      stdenv.cc.cc.lib   # libstdc++
+      stdenv.cc.cc.lib # libstdc++
       zlib
       openssl
       libGL

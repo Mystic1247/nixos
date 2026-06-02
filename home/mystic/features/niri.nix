@@ -1,5 +1,10 @@
 # home/mystic/features/niri.nix
-{ pkgs, config, lib, ... }:
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}:
 
 {
   home.packages = with pkgs; [
@@ -8,8 +13,8 @@
     swayidle
     wlogout
     polkit_gnome
-    brightnessctl   # brightness keys
-    playerctl       # media keys
+    brightnessctl # brightness keys
+    playerctl # media keys
   ];
 
   # ── Niri config (KDL format) ────────────────────────────────────────────
@@ -135,19 +140,26 @@
   # ── Waybar ──────────────────────────────────────────────────────────────
   programs.waybar = {
     enable = true;
-    systemd.enable = false;  # niri spawns it via spawn-at-startup above
+    systemd.enable = false; # niri spawns it via spawn-at-startup above
 
     settings.mainBar = {
-      layer  = "top";
+      layer = "top";
       position = "top";
       height = 32;
       spacing = 4;
 
-      modules-left   = [ "niri/workspaces" "niri/window" ];
+      modules-left = [
+        "niri/workspaces"
+        "niri/window"
+      ];
       modules-center = [ "clock" ];
-      modules-right  = [
-        "pulseaudio" "backlight" "battery"
-        "bluetooth" "network" "tray"
+      modules-right = [
+        "pulseaudio"
+        "backlight"
+        "battery"
+        "bluetooth"
+        "network"
+        "tray"
       ];
 
       "niri/workspaces" = {
@@ -165,38 +177,59 @@
       };
 
       battery = {
-        states = { warning = 30; critical = 15; };
+        states = {
+          warning = 30;
+          critical = 15;
+        };
         format = "{icon} {capacity}%";
-        format-icons = [ "" "" "" "" "" ];
+        format-icons = [
+          ""
+          ""
+          ""
+          ""
+          ""
+        ];
       };
 
       network = {
-        format-wifi     = " {signalStrength}%";
+        format-wifi = " {signalStrength}%";
         format-ethernet = " connected";
         format-disconnected = "󰤭 ";
-        tooltip-format  = "{essid} ({signalStrength}%) via {ifname}";
+        tooltip-format = "{essid} ({signalStrength}%) via {ifname}";
       };
 
       pulseaudio = {
         format = "{icon} {volume}%";
         format-muted = "󰝟";
-        format-icons = { default = [ "" "" "" ]; };
+        format-icons = {
+          default = [
+            ""
+            ""
+            ""
+          ];
+        };
         on-click = "pavucontrol";
       };
 
       backlight = {
         format = "{icon} {percent}%";
-        format-icons = [ "󰃞" "󰃟" "󰃠" ];
+        format-icons = [
+          "󰃞"
+          "󰃟"
+          "󰃠"
+        ];
       };
 
       bluetooth = {
-        format-on      = "󰂯";
-        format-off     = "󰂲";
+        format-on = "󰂯";
+        format-off = "󰂲";
         format-connected = "󰂱 {device_alias}";
         on-click = "blueman-manager";
       };
 
-      tray = { spacing = 8; };
+      tray = {
+        spacing = 8;
+      };
     };
 
     style = ''
@@ -240,25 +273,25 @@
     enable = true;
     settings = {
       main = {
-        font           = "JetBrainsMono Nerd Font:size=13";
-        terminal       = "ghostty -e";
-        layer          = "overlay";
-        width          = 35;
-        lines          = 8;
+        font = "JetBrainsMono Nerd Font:size=13";
+        terminal = "ghostty -e";
+        layer = "overlay";
+        width = 35;
+        lines = 8;
         horizontal-pad = 16;
-        vertical-pad   = 8;
-        inner-pad      = 4;
+        vertical-pad = 8;
+        inner-pad = 4;
       };
       colors = {
-        background    = "1e1e2eff";
-        text          = "cdd6f4ff";
-        match         = "89b4faff";
-        selection     = "313244ff";
+        background = "1e1e2eff";
+        text = "cdd6f4ff";
+        match = "89b4faff";
+        selection = "313244ff";
         selection-text = "cdd6f4ff";
-        border        = "89b4faff";
+        border = "89b4faff";
       };
       border = {
-        width  = 2;
+        width = 2;
         radius = 8;
       };
     };
@@ -269,15 +302,15 @@
     enable = true;
     settings = {
       background-color = "#1e1e2e";
-      text-color       = "#cdd6f4";
-      border-color     = "#89b4fa";
-      border-radius    = 8;
-      border-size      = 2;
-      padding          = "10,14";
-      width            = 320;
-      height           = 100;
-      default-timeout  = 5000;
-      font             = "JetBrainsMono Nerd Font 12";
+      text-color = "#cdd6f4";
+      border-color = "#89b4fa";
+      border-radius = 8;
+      border-size = 2;
+      padding = "10,14";
+      width = 320;
+      height = 100;
+      default-timeout = 5000;
+      font = "JetBrainsMono Nerd Font 12";
     };
   };
 }

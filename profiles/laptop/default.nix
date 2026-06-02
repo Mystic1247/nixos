@@ -9,7 +9,7 @@
     ../../modules/features/desktop.nix
     ../../modules/features/dev.nix
     ../../modules/features/keyd.nix
-    # ../../modules/features/niri.nix
+    ../../modules/features/niri.nix
     ../../modules/features/packages.nix
     ../../modules/features/power.nix
     ../../modules/features/printing.nix

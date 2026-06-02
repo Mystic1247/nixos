@@ -13,14 +13,14 @@
   imports = [ ./hardware-configuration.nix ];
 
   networking.hostName = "spectre";
-  time.timeZone       = "Asia/Singapore";
+  time.timeZone = "Asia/Singapore";
 
   services.logind.settings = {
     Login = {
-      HandleLidSwitch             = "ignore";
+      HandleLidSwitch = "ignore";
       HandleLidSwitchExternalPower = "ignore";
-      HandleLidSwitchDocked       = "ignore";
-      HandlePowerKey              = "suspend";
+      HandleLidSwitchDocked = "ignore";
+      HandlePowerKey = "suspend";
     };
   };
 

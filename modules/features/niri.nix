@@ -1,7 +1,7 @@
 { pkgs, ... }:
 
 {
-  programs.niri.enable = true;  # registers niri as a GDM session + installs it
+  programs.niri.enable = true; # registers niri as a GDM session + installs it
 
   # Niri needs these portals for screen sharing, file pickers, etc.
   # GNOME already brings xdg-desktop-portal-gnome, but niri needs gtk as fallback

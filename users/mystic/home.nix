@@ -6,7 +6,7 @@
 { inputs, ... }:
 
 {
-  home.username    = "mystic";
+  home.username = "mystic";
   home.homeDirectory = "/home/mystic";
 
   home.stateVersion = "25.05";

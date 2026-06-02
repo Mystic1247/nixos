@@ -9,9 +9,13 @@
 {
   users.users.mystic = {
     isNormalUser = true;
-    description  = "Mystic";
-    extraGroups  = [ "wheel" "networkmanager" "podman" ];
-    shell        = pkgs.zsh;
+    description = "Mystic";
+    extraGroups = [
+      "wheel"
+      "networkmanager"
+      "podman"
+    ];
+    shell = pkgs.zsh;
   };
 
   programs.zsh.enable = true;

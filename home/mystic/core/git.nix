@@ -12,7 +12,7 @@
 
       init.defaultBranch = "main";
 
-      # 
+      #
       pull.rebase = true;
       push.autoSetupRemote = true;
       rerere.enabled = true;
@@ -20,7 +20,7 @@
       branch.sort = "-committerdate";
     };
 
-    # 
+    #
     extraConfig = {
       diff.algorithm = "histogram";
       merge.conflictstyle = "zdiff3";

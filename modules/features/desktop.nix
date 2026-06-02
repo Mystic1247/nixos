@@ -4,7 +4,7 @@
   services.xserver.enable = true;
 
   services.displayManager.gdm.enable = true;
-  
+
   services.desktopManager.gnome.enable = true;
 
   services.gnome.core-shell.enable = true;
@@ -29,7 +29,7 @@
     gnomeExtensions.blur-my-shell
     gnomeExtensions.dash-to-panel
     gnomeExtensions.dash-to-dock
-    gnomeExtensions.appindicator  
+    gnomeExtensions.appindicator
     gnomeExtensions.caffeine
     gnomeExtensions.gjs-osk
     gnomeExtensions.touchup
