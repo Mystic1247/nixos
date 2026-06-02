@@ -32,8 +32,6 @@
     gnome-tweaks
     refine
 
-    maple-mono.NF
-
     winboat
     vscode
   ];
