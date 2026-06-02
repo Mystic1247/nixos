@@ -1,4 +1,6 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+
+{
   programs.vscode = {
     enable = true;
 
@@ -28,7 +30,7 @@
       "nix.serverPath" = "nil";
 
       "editor.formatOnSave" = true;
-      "nix.formatterPath" = "alejandra";
+      "nix.formatterPath" = "nixfmt-rfc-style";
     };
 
     keybindings = [
