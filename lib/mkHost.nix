@@ -33,46 +33,48 @@
 }:
 
 nixpkgs.lib.nixosSystem {
-  inherit system;
   specialArgs = { inherit inputs; };
 
-  modules =
-    # Core system modules
-    [ ../modules/core ]
+  modules = [
+    { nixpkgs.hostPlatform = system; }
+  ]
 
-    # Host-specific hardware + config
-    ++ [ ../hosts/${hostname} ]
+  # Core system modules
+  ++ [ ../modules/core ]
 
-    # Role profiles (laptop / desktop / server / …)
-    ++ map (p: ../profiles/${p}) profiles
+  # Host-specific hardware + config
+  ++ [ ../hosts/${hostname} ]
 
-    # NixOwOs module :3
-    ++ [ inputs.nixowos.nixosModules.default ]
+  # Role profiles (laptop / desktop / server / …)
+  ++ map (p: ../profiles/${p}) profiles
 
-    # Home Manager module
-    ++ [ home-manager.nixosModules.home-manager ]
+  # NixOwOs module :3
+  ++ [ inputs.nixowos.nixosModules.default ]
 
-    # Wire in each user's Home Manager config
-    ++ [
-      {
-        home-manager = {
-          useGlobalPkgs = true;
-          useUserPackages = true;
-          extraSpecialArgs = { inherit inputs; };
-          backupFileExtension = "backup";
-          users = builtins.listToAttrs (
-            map (u: {
-              name = u;
-              value = import ../users/${u}/home.nix;
-            }) users
-          );
-        };
-      }
-    ]
+  # Home Manager module
+  ++ [ home-manager.nixosModules.home-manager ]
 
-    # 6. Declare the user accounts themselves
-    ++ map (u: ../users/${u}/system.nix) users
+  # Wire in each user's Home Manager config
+  ++ [
+    {
+      home-manager = {
+        useGlobalPkgs = true;
+        useUserPackages = true;
+        extraSpecialArgs = { inherit inputs; };
+        backupFileExtension = "backup";
+        users = builtins.listToAttrs (
+          map (u: {
+            name = u;
+            value = import ../users/${u}/home.nix;
+          }) users
+        );
+      };
+    }
+  ]
 
-    # 7. Any one-off extras passed at the call site
-    ++ extraModules;
+  # 6. Declare the user accounts themselves
+  ++ map (u: ../users/${u}/system.nix) users
+
+  # 7. Any one-off extras passed at the call site
+  ++ extraModules;
 }
