@@ -1,8 +1,8 @@
 { pkgs, ... }: {
   programs.vscode = {
     enable = true;
-    
-    package = pkgs.vscode; 
+
+    package = pkgs.vscode;
 
     extensions = with pkgs.vscode-extensions; [
       bbenoist.nix
@@ -25,7 +25,10 @@
       "workbench.startupEditor" = "none";
 
       "nix.enableLanguageServer" = true;
-      "nix.serverPath" = "nixd";
+      "nix.serverPath" = "nil";
+
+      "editor.formatOnSave" = true;
+      "nix.formatterPath" = "alejandra";
     };
 
     keybindings = [
