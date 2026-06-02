@@ -3,7 +3,8 @@
     enable = true;
 
     settings = {
-      theme = "Adawaita Dark";
-      font-family = "Maple Mono";
+      theme = "Adwaita Dark";
+      font-family = "Maple Mono NF";
+    };
   };
 }
