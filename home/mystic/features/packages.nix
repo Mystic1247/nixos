@@ -32,6 +32,8 @@
     gnome-tweaks
     refine
 
+    maple-mono
+
     winboat
     vscode
   ];

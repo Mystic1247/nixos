@@ -3,7 +3,7 @@
     enable = true;
 
     settings = {
-      theme = "Adwaita Dark";
+      theme = "Maple Mono";
       font-family = "JetBrainsMono Nerd Font";
       font-size = 11;
     };
