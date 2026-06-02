@@ -37,7 +37,7 @@ nixpkgs.lib.nixosSystem {
   specialArgs = { inherit inputs; };
 
   modules = [
-    { stdenv.hostPlatform.system = system; }
+    { nixpkgs.hostPlatform = system; }
   ]
 
   # Core system modules
