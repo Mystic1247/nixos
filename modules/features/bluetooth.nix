@@ -14,6 +14,6 @@
 
   services.blueman = {
     enable = true;
-    withApplet = false; # TODO: temp fix, remove this line when bug is fixed
+    # withApplet = false; # TODO: temp fix
   };
 }
