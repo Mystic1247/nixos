@@ -12,6 +12,7 @@
     btop
     unzip
     zip
+    nil
 
     maple-mono.NF
     pantum-driver
