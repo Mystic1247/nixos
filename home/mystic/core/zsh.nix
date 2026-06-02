@@ -36,7 +36,12 @@
       gl         = "git lg";
     };
 
-    initContent = ''
+    initExtra = ''
+      ZSH_HIGHLIGHT_STYLES[command]='fg=green'
+      ZSH_HIGHLIGHT_STYLES[alias]='fg=green'
+      ZSH_HIGHLIGHT_STYLES[builtin]='fg=green'
+      ZSH_HIGHLIGHT_STYLES[function]='fg=green'
+
       bindkey '^ ' autosuggest-accept 
       bindkey '^f' fzf-file-widget
     '';
