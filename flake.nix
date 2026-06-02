@@ -51,16 +51,5 @@
           users = [ "mystic" ];
         };
       };
-
-      templates = {
-        godot = {
-          path = ./templates/godot;
-          description = "Godot 4 game dev shell — editor, export templates, gdtoolkit, butler";
-        };
-        gtk = {
-          path = ./templates/gtk;
-          description = "GTK4 app dev shell — Vala/Python/Rust variants with libadwaita";
-        };
-      };
     };
 }
