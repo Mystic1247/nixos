@@ -3,7 +3,7 @@
 {
   home.packages = with pkgs; [
     cool-retro-term
-    ghostty
+    # ghostty
     helix
     micro
 
