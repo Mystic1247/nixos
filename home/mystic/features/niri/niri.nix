@@ -13,8 +13,8 @@
     swayidle
     wlogout
     polkit_gnome
-    brightnessctl # brightness keys
-    playerctl # media keys
+    brightnessctl
+    playerctl
   ];
 
   # ── Niri config (KDL format) ────────────────────────────────────────────
