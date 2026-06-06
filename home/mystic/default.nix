@@ -6,5 +6,6 @@
   imports = [
     ./core
     ./features
+    ./features/niri
   ];
 }
