@@ -25,10 +25,6 @@
 
   nix.optimise.automatic = true;
 
-  # `nix.registry.nixpkgs` and `nix.nixPath` need no setup here: because the
-  # system is built from this flake, NixOS pins both to inputs.nixpkgs itself
-  # (nixpkgs.flake.setNixPath / setFlakeRegistry, both on by default).
-
   # nh is the day-to-day CLI (see the shell abbreviations in the user's fish
   # config). Its weekly clean-up replaces nix.gc; the two are mutually exclusive.
   # The flake path that `nh os switch` uses is set per user (users/<name>/system.nix).
