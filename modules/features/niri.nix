@@ -1,16 +1,22 @@
+# niri (scrollable-tiling Wayland compositor), installed from nixpkgs and
+# registered as a GDM session next to GNOME. Its per-user config belongs in
+# users/<name>/home/desktop/niri.nix.
+
 { pkgs, ... }:
 
 {
-  programs.niri.enable = true; # registers niri as a GDM session + installs it
+  programs.niri.enable = true; # installs niri and registers the GDM session
 
-  # Niri needs these portals for screen sharing, file pickers, etc.
-  # GNOME already brings xdg-desktop-portal-gnome, but niri needs gtk as fallback
+  # niri needs these portals for screen sharing, file pickers, etc.
+  # GNOME brings xdg-desktop-portal-gnome; the gtk portal is the fallback.
   xdg.portal = {
     enable = true;
     extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
     configPackages = [ pkgs.niri ];
   };
 
-  # Polkit agent (GNOME has its own, but niri doesn't — needed for sudo GUI prompts)
+  # Polkit is what lets GUI apps ask for admin rights. GNOME ships its own
+  # agent, but niri has none: one (e.g. polkit_gnome) must be started from
+  # niri's own config, otherwise GUI password prompts won't appear in niri.
   security.polkit.enable = true;
 }

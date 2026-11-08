@@ -1,28 +1,29 @@
 # lib/mkHost.nix
 #
-# Helper function for stamping out NixOS host configurations.
-# Usage (in flake.nix):
+# Builds one NixOS configuration out of the repo's layers. Every machine is
+# assembled the same way, so adding a host never means touching this file:
+#
+#   modules/core/          always applied (baseline for every machine)
+#   hosts/<hostname>/      this machine's hardware and its unique quirks
+#   profiles/<name>.nix    a role (laptop, desktop, server) = a list of features
+#   users/<name>/          the NixOS account (system.nix) and its Home Manager
+#                          config (home/)
+#
+# Usage (see flake.nix):
 #
 #   nixosConfigurations.spectre = mkHost {
 #     hostname = "spectre";
-#     system   = "x86_64-linux";
 #     profiles = [ "laptop" ];
 #     users    = [ "mystic" ];
 #   };
 #
 # Arguments:
-#   hostname  - machine hostname; must match a folder under hosts/
-#   system    - e.g. "x86_64-linux", "aarch64-linux"
-#   profiles  - list of profiles from profiles/ to apply (e.g. ["laptop"])
-#   users     - list of users from users/ whose HM configs to wire in
-#   extraModules - optional list of extra NixOS modules to include
+#   hostname     - becomes networking.hostName; must match a folder in hosts/
+#   profiles     - profile names from profiles/ (without ".nix")
+#   users        - user names from users/ to create and wire into Home Manager
+#   extraModules - optional extra NixOS modules for one-off additions
 
-{
-  nixpkgs,
-  home-manager,
-  inputs,
-  ...
-}:
+{ inputs }:
 
 {
   hostname,
@@ -31,46 +32,28 @@
   extraModules ? [ ],
 }:
 
-nixpkgs.lib.nixosSystem {
+inputs.nixpkgs.lib.nixosSystem {
   specialArgs = { inherit inputs; };
 
-  modules =
-    # Core system modules
-    [ ../modules/core ]
+  modules = [
+    ../modules/core
+    ../hosts/${hostname}
 
-    # Host-specific hardware + config
-    ++ [ ../hosts/${hostname} ]
+    # Single source of truth: the flake attribute name *is* the hostname.
+    { networking.hostName = hostname; }
 
-    # Role profiles (laptop / desktop / server / …)
-    ++ map (p: ../profiles/${p}) profiles
-
-    # NixOwOs module :3
-    ++ [ inputs.nixowos.nixosModules.default ]
-
-    # Home Manager module
-    ++ [ home-manager.nixosModules.home-manager ]
-
-    # Wire in each user's Home Manager config
-    ++ [
-      {
-        home-manager = {
-          useGlobalPkgs = true;
-          useUserPackages = true;
-          extraSpecialArgs = { inherit inputs; };
-          backupFileExtension = "backup";
-          users = builtins.listToAttrs (
-            map (u: {
-              name = u;
-              value = import ../users/${u}/home.nix;
-            }) users
-          );
-        };
-      }
-    ]
-
-    # 6. Declare the user accounts themselves
-    ++ map (u: ../users/${u}/system.nix) users
-
-    # 7. Any one-off extras passed at the call site
-    ++ extraModules;
+    inputs.home-manager.nixosModules.home-manager
+    {
+      home-manager = {
+        useGlobalPkgs = true; # share the system's nixpkgs (and its overlays)
+        useUserPackages = true;
+        extraSpecialArgs = { inherit inputs; };
+        backupFileExtension = "backup";
+        users = inputs.nixpkgs.lib.genAttrs users (user: ../users/${user}/home);
+      };
+    }
+  ]
+  ++ map (profile: ../profiles/${profile}.nix) profiles
+  ++ map (user: ../users/${user}/system.nix) users
+  ++ extraModules;
 }

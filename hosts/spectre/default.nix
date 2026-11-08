@@ -1,28 +1,20 @@
-# hosts/spectre/default.nix
+# hosts/spectre
 #
-# HP Spectre x360 — convertible laptop.
-# Role profile: laptop (see profiles/laptop)
-# User(s): mystic (see users/mystic)
-#
-# Reminder: only put things here that are unique to this specific machine.
-# Shared laptop behaviour lives in profiles/laptop/.
+# HP Spectre x360 (convertible). Profile: laptop. Only machine-specific things
+# go here; shared laptop behaviour lives in profiles/laptop.nix.
 
 { ... }:
 
 {
   imports = [ ./hardware-configuration.nix ];
 
-  networking.hostName = "spectre";
-  time.timeZone = "Asia/Singapore";
-
-  services.logind.settings = {
-    Login = {
-      HandleLidSwitch = "ignore";
-      HandleLidSwitchExternalPower = "ignore";
-      HandleLidSwitchDocked = "ignore";
-      HandlePowerKey = "suspend";
-    };
+  # Keep running with the lid closed (overrides the laptop profile's suspend).
+  services.logind.settings.Login = {
+    HandleLidSwitch = "ignore";
+    HandleLidSwitchExternalPower = "ignore";
+    HandleLidSwitchDocked = "ignore";
   };
 
+  # Set when this machine was first installed. Do NOT change it to follow upgrades.
   system.stateVersion = "25.05";
 }
