@@ -42,6 +42,7 @@
     krita
 
     # GNOME tweaking and Windows apps
+    gnome-extension-manager
     gnome-tweaks
     refine
     winboat
