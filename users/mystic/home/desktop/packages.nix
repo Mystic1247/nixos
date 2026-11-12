@@ -27,13 +27,13 @@
     ytmdesktop
     monophony
     rmpc
+    inputs.sonora.packages.${pkgs.stdenv.hostPlatform.system}.default
 
     # Browsers and chat
     helium
     inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
     vesktop
     discord
-    zapfast
 
     # Games
     freesmlauncher

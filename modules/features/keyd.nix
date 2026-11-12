@@ -10,8 +10,4 @@
 
 {
   services.keyd.enable = true;
-
-  # The keyd module doesn't create this group itself. users/<name>/system.nix
-  # adds the user to it when it exists.
-  users.groups.keyd = { };
 }
