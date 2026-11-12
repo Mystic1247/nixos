@@ -20,6 +20,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    nix-fdm = {
+      url = "github:kreutzi/nix-FDM";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     sonora = {
       url = "github:sonorahq/sonora";
       inputs.nixpkgs.follows = "nixpkgs";

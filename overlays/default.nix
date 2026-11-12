@@ -8,4 +8,13 @@
 [
   inputs.helium.overlays.default # pkgs.helium
   inputs.freesmlauncher.overlays.default # pkgs.freesmlauncher
+  (_final: prev: {
+    freedownloadmanager =
+      inputs.nix-fdm.packages.${prev.stdenv.hostPlatform.system}.default.overrideAttrs
+        (old: {
+          src = old.src.overrideAttrs {
+            outputHash = "sha256-XLFyp12RtIuDC1JO/sojFXk0WJX833bVesaocwi9CDI=";
+          };
+        });
+  })
 ]

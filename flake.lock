@@ -138,6 +138,26 @@
         "type": "github"
       }
     },
+    "nix-fdm": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1791717381,
+        "narHash": "sha256-5QHoCCbL0S9XJXHislFVJJbKViEC/ucdQlUeviDUAN8=",
+        "owner": "kreutzi",
+        "repo": "nix-FDM",
+        "rev": "cf3e055309958b3067bb10825af728beed0da5f8",
+        "type": "github"
+      },
+      "original": {
+        "owner": "kreutzi",
+        "repo": "nix-FDM",
+        "type": "github"
+      }
+    },
     "nix-filter": {
       "locked": {
         "lastModified": 1757882181,
@@ -227,6 +247,7 @@
         "helium": "helium",
         "home-manager": "home-manager",
         "niri": "niri",
+        "nix-fdm": "nix-fdm",
         "nixowos": "nixowos",
         "nixpkgs": "nixpkgs",
         "sonora": "sonora",

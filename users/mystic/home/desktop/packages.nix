@@ -10,7 +10,7 @@
     fastfetch
     hyfetch
 
-    # Editors and notes
+    # Editors
     foliate
     helix
     micro
@@ -27,6 +27,7 @@
     ytmdesktop
     monophony
     rmpc
+    vlc
     inputs.sonora.packages.${pkgs.stdenv.hostPlatform.system}.default
 
     # Browsers and chat
@@ -46,5 +47,7 @@
     gnome-tweaks
     refine
     winboat
+
+    freedownloadmanager
   ];
 }
