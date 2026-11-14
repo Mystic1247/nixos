@@ -16,5 +16,5 @@
             outputHash = "sha256-XLFyp12RtIuDC1JO/sojFXk0WJX833bVesaocwi9CDI=";
           };
         });
-  })
+  }) # pkgs.freedownloadmanager
 ]

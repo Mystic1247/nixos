@@ -1,3 +1,5 @@
+# modules/features/keyd.nix
+#
 # Key remapping daemon (https://github.com/rvaiya/keyd).
 #
 # This module only turns the daemon on. Each host supplies its own mappings:

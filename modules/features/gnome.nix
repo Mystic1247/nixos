@@ -28,7 +28,7 @@
     gnomeExtensions.dash-to-dock
     gnomeExtensions.appindicator
     gnomeExtensions.glocalsend
-    gnomeExtensions.gsconnect
+    # gnomeExtensions.gsconnect
     gnomeExtensions.medialine
     gnomeExtensions.caffeine
     gnomeExtensions.hot-edge
