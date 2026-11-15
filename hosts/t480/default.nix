@@ -18,6 +18,13 @@
     insert = "nextsong";
   };
 
+  services.logind.settings.Login = {
+    HandleLidSwitch = "suspend";
+    HandleLidSwitchExternalPower = "ignore";
+    HandleLidSwitchDocked = "ignore";
+    HandlePowerKey = "suspend";
+  };
+
   # Set when this machine was first installed. Do NOT change it to follow upgrades.
   system.stateVersion = "24.11";
 }

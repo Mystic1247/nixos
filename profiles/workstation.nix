@@ -19,10 +19,11 @@ in
     "fonts"
     "gnome"
     "niri"
-    "umbriel"
     "printing"
     "quiet-boot"
     "virt"
     "kde-connect"
+    "noctalia"
+    "umbriel"
   ];
 }

@@ -15,7 +15,7 @@
   services.logind.settings.Login = lib.mapAttrs (_: lib.mkDefault) {
     HandleLidSwitch = "suspend";
     HandleLidSwitchExternalPower = "suspend";
-    HandleLidSwitchDocked = "suspend";
+    HandleLidSwitchDocked = "ignore";
     HandlePowerKey = "suspend";
   };
 }

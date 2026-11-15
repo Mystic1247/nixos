@@ -30,10 +30,13 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    umbriel = {
-      url = "github:noctalia-dev/umbriel";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # Umbriel (compositor) and Noctalia (its shell), used by
+    # modules/features/{umbriel,noctalia}.nix and the Home Manager umbriel config.
+    # Deliberately NO `inputs.nixpkgs.follows`: they must use the nixpkgs they
+    # were built against, otherwise their Cachix binaries (modules/core/nix.nix)
+    # don't match and everything compiles locally.
+    umbriel.url = "github:noctalia-dev/umbriel";
+    noctalia.url = "github:noctalia-dev/noctalia";
 
     zen-browser = {
       url = "github:0xc000022070/zen-browser-flake";
