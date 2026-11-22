@@ -9,7 +9,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # --- Flake packages, wired in through overlays/default.nix ---
+    # --- Flake packages ---
     helium = {
       url = "github:schembriaiden/helium-browser-nix-flake";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -30,11 +30,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # Umbriel (compositor) and Noctalia (its shell), used by
-    # modules/features/{umbriel,noctalia}.nix and the Home Manager umbriel config.
-    # Deliberately NO `inputs.nixpkgs.follows`: they must use the nixpkgs they
-    # were built against, otherwise their Cachix binaries (modules/core/nix.nix)
-    # don't match and everything compiles locally.
     umbriel.url = "github:noctalia-dev/umbriel";
     noctalia.url = "github:noctalia-dev/noctalia";
 
@@ -53,9 +48,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # Currently unused: reserved for the Home Manager niri config
-    # (users/mystic/home/desktop/niri.nix). The NixOS side uses nixpkgs' own
-    # programs.niri module.
+    # (users/mystic/home/desktop/niri.nix).
     niri = {
       url = "github:sodiboo/niri-flake";
       inputs.nixpkgs.follows = "nixpkgs";

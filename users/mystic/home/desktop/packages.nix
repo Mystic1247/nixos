@@ -26,6 +26,7 @@
     pear-desktop
     ytmdesktop
     monophony
+    spotify
     rmpc
     vlc
     inputs.sonora.packages.${pkgs.stdenv.hostPlatform.system}.default
