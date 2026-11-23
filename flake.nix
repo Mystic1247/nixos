@@ -1,5 +1,5 @@
 {
-  description = "Mystic's NixOS fleet: t480, spectre and nasher (Dell Chromebook)";
+  description = "...";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
