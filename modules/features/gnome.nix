@@ -33,6 +33,7 @@
     gnomeExtensions.caffeine
     gnomeExtensions.hot-edge
     gnomeExtensions.arcmenu
+    gnomeExtensions.copyous
   ];
 
   # Trim the default GNOME app set.
