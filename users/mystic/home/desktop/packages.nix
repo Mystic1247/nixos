@@ -42,6 +42,7 @@
 
     # Creative
     krita
+    anki
 
     # GNOME tweaking and Windows apps
     gnome-extension-manager
